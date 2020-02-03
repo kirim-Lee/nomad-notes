@@ -1,3 +1,5 @@
+import { NOTE_FRAGMENT } from './fragment';
+
 export const resolvers = {
   Query: {
     note: (_, variables, { cache }) => {
@@ -5,9 +7,9 @@ export const resolvers = {
         __typename: 'Note',
         id: variables.id
       });
-      console.log(id);
+      const note = cache.readFragment({ fragment: NOTE_FRAGMENT, id });
 
-      return null;
+      return note;
     }
   }
 };
