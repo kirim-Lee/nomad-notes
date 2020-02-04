@@ -4,11 +4,9 @@ import Notes from '../../Routes/Notes';
 import Add from '../../Routes/Add';
 import Note from '../../Routes/Note';
 import Edit from '../../Routes/Edit';
-// import { Query } from 'react-apollo';
 
 const App = () => {
   return (
-    /*<Query query={GET_NOTES}>{() => null}</Query>*/
     <BrowserRouter>
       <Switch>
         <Route exact={true} path={'/'} component={Notes} />
