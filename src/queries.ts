@@ -19,3 +19,12 @@ export const GET_NOTES = gql`
     }
   }
 `;
+
+export const ADD_NOTE = gql`
+  mutation($title: String!, $content: String!) {
+    createNote(title: $title, content: $content) @client {
+      ...NoteParts
+    }
+  }
+  ${NOTE_FRAGMENT}
+`;

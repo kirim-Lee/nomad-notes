@@ -18,6 +18,7 @@ export const resolvers = {
     createNote: (_, variables, { cache }) => {
       const { notes } = cache.readQuery({ query: GET_NOTES });
       const { title, content } = variables;
+      console.log(title, content, variables);
       const newNote = {
         __typename: 'Note',
         title,
