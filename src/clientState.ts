@@ -54,7 +54,7 @@ export const defaults = {
       __typename: 'Note',
       id: '1',
       title: 'First',
-      content: 'FirstContent'
+      content: '- FirstContent'
     }
   ]
 };
