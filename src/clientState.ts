@@ -1,7 +1,7 @@
 import { NOTE_FRAGMENT } from './fragment';
 import { GET_NOTES } from './queries';
 import rhg from 'random-hash-generator';
-import { saveNotes } from './offline';
+import { saveNotes, restoreNote } from './offline';
 
 export const resolvers = {
   Query: {
@@ -52,9 +52,7 @@ export const resolvers = {
   }
 };
 export const defaults = {
-  notes: localStorage.getItem('notes')
-    ? JSON.parse(localStorage.getItem('notes') as any)
-    : []
+  notes: restoreNote()
 };
 export const typeDefs = [
   `
