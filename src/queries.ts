@@ -28,3 +28,12 @@ export const ADD_NOTE = gql`
   }
   ${NOTE_FRAGMENT}
 `;
+
+export const EDIT_NOTE = gql`
+  mutation($id: String!, $title: String!, $content: String!) {
+    editNote(id: $id, title: $title, content: $content) @client {
+      ...NoteParts
+    }
+  }
+  ${NOTE_FRAGMENT}
+`;
