@@ -1,6 +1,7 @@
 import { NOTE_FRAGMENT } from './fragment';
 import { GET_NOTES } from './queries';
 import rhg from 'random-hash-generator';
+import { saveNotes } from './offline';
 
 export const resolvers = {
   Query: {
@@ -25,8 +26,8 @@ export const resolvers = {
         content,
         id: rhg.generate(10, notes.length, 'note').key + notes.length
       };
-
       cache.writeData({ data: { notes: [newNote, ...notes] } });
+      saveNotes(cache);
       return newNote;
     },
     editNote: (_, { id, title, content }, { cache }) => {
@@ -45,19 +46,15 @@ export const resolvers = {
         fragment: NOTE_FRAGMENT,
         data: updateNote
       });
+      saveNotes(cache);
       return updateNote;
     }
   }
 };
 export const defaults = {
-  notes: [
-    {
-      __typename: 'Note',
-      id: '1',
-      title: 'First',
-      content: '- FirstContent'
-    }
-  ]
+  notes: localStorage.getItem('notes')
+    ? JSON.parse(localStorage.getItem('notes') as any)
+    : []
 };
 export const typeDefs = [
   `
